@@ -3,19 +3,43 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+
     path('register/', views.register, name='register'),
+
     path('login/', views.login_view, name='login'),
+
     path('logout/', views.logout_view, name='logout'),
 
     # Dashboard
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path(
+        'dashboard/',
+        views.dashboard,
+        name='dashboard'
+    ),
 
     # Productos CRUD
-    path('products/create/', views.product_create, name='product_create'),
-    path('products/<uuid:pk>/edit/', views.product_update, name='product_update'),
-    path('products/<uuid:pk>/delete/', views.product_delete, name='product_delete'),
+    path(
+        'products/create/',
+        views.product_create,
+        name='product_create'
+    ),
 
-    # Carrito
+    path(
+        'products/<uuid:pk>/edit/',
+        views.product_update,
+        name='product_update'
+    ),
+
+    path(
+        'products/<uuid:pk>/delete/',
+        views.product_delete,
+        name='product_delete'
+    ),
+
+    # =========================
+    # CARRITO
+    # =========================
+
     path(
         'cart/',
         views.cart_detail,
@@ -28,14 +52,16 @@ urlpatterns = [
         name='add_to_cart'
     ),
 
+    # CAMBIADO int -> uuid
     path(
-        'cart/remove/<int:item_id>/',
+        'cart/remove/<uuid:item_id>/',
         views.remove_from_cart,
         name='remove_from_cart'
     ),
 
+    # CAMBIADO int -> uuid
     path(
-        'cart/update/<int:item_id>/',
+        'cart/update/<uuid:item_id>/',
         views.update_cart_item,
         name='update_cart_item'
     ),
